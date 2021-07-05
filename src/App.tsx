@@ -16,14 +16,21 @@ function App() {
 
   // Fetch Data from localStorage
   useEffect(() => {
-    let data:Task[] | undefined = JSON.parse(localStorage["data"])
-    if (typeof data === "undefined"){
-      return
+    try{
+      let data:Task[] | undefined = JSON.parse(localStorage["data"]);
+      console.log(data);
+      if (Array.isArray(data)){
+        setTasks(
+        data
+        )
     }
+    }
+    catch{
+      console.log("failed")
+    }
+    
     console.log("ran")
-    setTasks(
-      data
-      )
+    
   },[])
 
 
